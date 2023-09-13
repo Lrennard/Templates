@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    beammp-server:
+        container_name: beammp-server
+        ports:
+            - '30814:30814/tcp'
+            - '30814:30814/udp'
+        environment:
+            - 'NAME=<YOUR_SERVER_NAME>'
+            - AUTH_KEY=<YOUR_AUTH_KEY>
+            - MAP=utah
+        image: rouhim/beammp-server
