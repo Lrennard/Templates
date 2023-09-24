@@ -1,0 +1,40 @@
+---
+- hosts: "*"
+  tasks:
+    - name: Install Sudo&Vim
+      become: yes
+      become_method: su
+      apt:
+        name:
+           - sudo
+           - vim
+        state: present
+    - name: Install neofetch
+      become: yes
+      become_method: su
+      apt:
+        name:
+           - neofetch
+        state: present
+    - name: Install curl&git
+      become: yes
+      become_method: su
+      apt:
+        name:
+           - curl
+           - git
+        state: present
+    - name: Install Prometheus N.E, nfs-common & qemu agent
+      become: yes
+      become_method: su
+      apt:
+        name:
+           - prometheus-node-exporter
+           - nfs-common
+           - qemu-guest-agent
+        update_cache: yes
+    - name: start guest qemu-guest-agent
+      service:
+        name: qemu-guest-agent
+        state: started
+        enabled: yes

@@ -1,0 +1,19 @@
+---
+- hosts: master
+  become: yes
+  become_method: su
+  tasks:
+    - name: install public keys
+      ansible.posix.authorized_key:
+        user: <$USER> #insert host username
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+- hosts: "*"
+  become: yes
+  become_method: su
+  tasks:
+    - name: install public keys
+      ansible.posix.authorized_key:
+        user: <$USER> #insert remote username
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

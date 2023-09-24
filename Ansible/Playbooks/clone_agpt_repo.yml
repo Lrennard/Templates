@@ -1,0 +1,10 @@
+---
+- name: Clone Auto-GPT
+  hosts: "*"
+  tasks:
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: 'https://www.github.com/Significant-Gravitas/Auto-GPT.git'
+        dest: </path/to/destination/> #replace with the full path to your desired folder
+        single_branch: yes
+        version: master
