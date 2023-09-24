@@ -1,0 +1,10 @@
+---
+- name: Add User to Docker Group
+  hosts: "*"
+  become: yes
+  become_method: su
+  tasks:
+    - name: Add user to the docker group
+      user:
+        name: ansible
+        groups: docker

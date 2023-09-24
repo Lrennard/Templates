@@ -1,0 +1,15 @@
+---
+- hosts: "*"
+  become: yes
+  become_method: su
+  tasks:
+    -  name: install git
+       become: yes
+       apt:
+         name:
+            - sudo
+            - vim
+            - git
+            - neofetch
+            - curl
+         state: present

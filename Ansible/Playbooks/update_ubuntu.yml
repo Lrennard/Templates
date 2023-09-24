@@ -1,0 +1,19 @@
+---
+- hosts: "*" # Define host via cli arguement -i
+  become: yes  # Use privilege escalation (sudo)
+  become_method: su #Escalate privilieges from ssh_user session
+  tasks:
+    - name: Update package cache and upgrade packages (Ubuntu/Debian)
+      apt:
+        update_cache: yes
+        upgrade: yes
+      when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  hosts: linvps003 # Combine the host groups
+  become: yes
+  become_method: su
+# tasks:
+#   - name: Update package cache and upgrade packages (Ubuntu/Debian)
+#     apt:
+#       update_cache: yes
+#       upgrade: yes
+#     when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian

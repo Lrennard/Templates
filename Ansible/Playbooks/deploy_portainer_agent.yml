@@ -1,0 +1,13 @@
+---
+- hosts: "*"
+  tasks:
+  - name: Deploy Portainer Agent
+    community.docker.docker_container:
+      name: portainer_agent
+      image: portainer/agent
+      ports:
+        - "9001:9001"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /var/lib/docker/volimes:/var/lib/docker/volumes
+      restart_policy: always

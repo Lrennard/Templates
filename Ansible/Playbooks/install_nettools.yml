@@ -1,0 +1,23 @@
+---
+- hosts: "*"
+  become: yes
+  become_method: su
+  tasks:
+    - name: install net-tools
+      apt:
+        name: net-tools
+        state: absent
+#- hosts: ubu_servers
+#  become: yes
+#  tasks:
+#    - name: install net-tools
+#      apt:
+#        name: net-tools
+#        state: present
+#- hosts: 
+#  become: yes
+#  tasks:
+#    - name: install nettools on Arch
+#      community.general.pacman:
+#        name: net-tools
+#        state: present
