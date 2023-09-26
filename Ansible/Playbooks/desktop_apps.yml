@@ -1,0 +1,12 @@
+---
+- hosts: "*"
+  become: yes
+  become_method: su
+  task:
+    - name: Install Desktop Apps
+      apt:
+        - libreoffice
+        - opera
+        - firefox
+        - discord
+      update_cache: yes

@@ -1,0 +1,14 @@
+---
+- name: notify via discord-webhook
+  hosts: "*"
+  tasks:
+    - name: send discord message
+      uri:
+        url: <discord_webhook>
+        method: post
+        body_format: json
+        body: '{"content": "YEET"}'
+        headers:
+          Content-Type: application/json
+        status_code: 204
+      # when: specify-condition

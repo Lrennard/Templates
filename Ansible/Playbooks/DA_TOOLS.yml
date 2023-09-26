@@ -1,0 +1,25 @@
+---
+- hosts: "*"
+  tasks:
+    -  name: Install Sudo&Vim
+       become: yes
+       become_method: su
+       apt:
+         name:
+            - sudo
+            - vim
+         state: present
+    -  name: Install neofetch
+       become: yes
+       become_method: su
+       apt:
+         name:
+            - neofetch
+         state: present
+    -  name: Install Nmap
+       become: yes
+       become_method: su
+       apt:
+         name:
+            - nmap
+         state: present

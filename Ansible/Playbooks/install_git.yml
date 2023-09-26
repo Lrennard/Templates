@@ -1,12 +1,10 @@
-#About: This will install git
-#
 ---
 - hosts: "*"
   become: yes
   become_method: su
   tasks:
-    -  name: install git
-       become: yes
-       apt:
-         name: git
-         state: present
+    - name: install git
+      become: yes
+      apt:
+        name: git
+        state: present
