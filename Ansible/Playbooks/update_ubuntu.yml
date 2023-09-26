@@ -8,9 +8,9 @@
         update_cache: yes
         upgrade: yes
       when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-  hosts: linvps003 # Combine the host groups
-  become: yes
-  become_method: su
+# hosts: "*" # Combine the host groups
+# become: yes
+# become_method: su
 # tasks:
 #   - name: Update package cache and upgrade packages (Ubuntu/Debian)
 #     apt:
