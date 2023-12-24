@@ -6,7 +6,7 @@ services:
     environment:
       - TRILIUM_DATA_DIR=/home/node/trilium-data
     ports:
-      - "8220:8080"
+      - "8080:8080"
     volumes:
       - trilium:/home/node/trilium-data
 
