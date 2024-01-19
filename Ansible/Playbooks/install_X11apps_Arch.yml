@@ -1,0 +1,18 @@
+- hosts: "*"
+  become: yes
+  tasks:
+    - name: Install X11 & X11-deps on Arch
+      community.general.pacman:
+        name: 
+          - xorg-server 
+          - xorg-apps 
+          - xorg-xinit
+          - xorg-xinit
+          - xorg-twm
+          - xorg-xclock
+        state: present
+    - name: Install Xterm
+      community.general.pacman:
+        name:
+          - xterm
+        state: present
