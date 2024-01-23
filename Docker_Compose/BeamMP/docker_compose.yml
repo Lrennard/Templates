@@ -7,6 +7,6 @@ services:
             - '30814:30814/tcp'
             - '30814:30814/udp'
         environment:
-            - NAME=
-            - AUTH_KEY=
-            - MAP=
+            - BEAMMP_NAME=
+            - BEAMMP_AUTH_KEY=
+            - BEAMMP_MAP=
