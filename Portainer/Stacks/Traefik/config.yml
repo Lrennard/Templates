@@ -6,7 +6,7 @@ http:
     homeassistant:
       entryPoints:
         - https
-      rule: 'Host(`homeassistant.cornouiller.xyz`)'
+      rule: 'Host(`homeassistant.example.com`)'
       service: homeassistant
       middlewares:
     #    - "auth"  
@@ -32,26 +32,26 @@ http:
           - 10.10.66.0/24 # Lab Net
   
     # Authelia guard
-#    auth:
-#      forwardauth:
-#        address: http://auth:9091/api/verify?rd=https://auth.domain.com/ # replace auth with your authelia container name
-#        trustForwardHeader: true
-#        authResponseHeaders:
-#          - Remote-User
-#          - Remote-Groups
-#          - Remote-Name
-#          - Remote-Email
-#  
+    auth:
+      forwardauth:
+        address: http://auth:9091/api/verify?rd=https://auth.domain.com/ # replace auth with your authelia container name
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email
+  
     # Authelia basic auth guard
-#    auth-basic:
-#      forwardauth:
-#        address: http://auth:9091/api/verify?auth=basic # replace auth with your authelia container name
-#        trustForwardHeader: true
-#        authResponseHeaders:
-#          - Remote-User
-#          - Remote-Groups
-#          - Remote-Name
-#          - Remote-Email
+    auth-basic:
+      forwardauth:
+        address: http://auth:9091/api/verify?auth=basic # replace auth with your authelia container name
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+         - Remote-Email
 
     # Security headers
     securityHeaders:
