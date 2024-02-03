@@ -1,39 +1,66 @@
+---
 version: '3'
+
 services:
   traefik:
-    container_name: traefik
     image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
     ports:
       - 80:80
       - 443:443
-      - 8080:8080 # Dashboard port
-    volumes:
-      - /opt/appdata/traefik/:/etc/traefik/
-    networks:
-      - proxy # rename this to your custom docker network
-    labels:
-      traefik.http.routers.api.rule: Host(`traefik.example.com`)    # Define the subdomain for the traefik dashboard.
-      traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
-      traefik.http.routers.api.service: api@internal    # Enable Traefik API.
-      traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
+      #- 8080:8080 ##You Shouldn't do This, just Git Gud ;P
     environment:
-      DOCKER_HOST: dockersocket
-      CF_DNS_API_TOKEN: YOUR_SUPER_SECURE_CLOUDFLARE_API_TOKEN
-    restart: unless-stopped
-    depends_on:
-      - dockersocket
-
-networks:
-  proxy:
-    driver: bridge
-    external: true
+      - CF_API_EMAIL=admin@example.com
+      - CF_DNS_API_TOKEN= {YOUR_DNS_TOKEN}
+      # - CF_API_KEY=YOUR_API_KEY
+      # be sure to use the correct one depending on if you are using a token or key
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /portainer/Files/AppData/Config/traefik/:/etc/traefik/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.cornouiller.xyz`)"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.example.com`)"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=example.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.example.com"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+      - "traefik.http.routers.web.entrypoints=https"
+      - "traefik.http.routers.web.rule=Host(`traefik.example.com`)"
+      - "traefik.http.routers.web.tls=true"
+      - "traefik.http.routers.web.service=web"
+      - "traefik.http.services.web.loadbalancer.server.port=3000"
+      - "traefik.docker.network=proxy"
 
   authelia:
     image: authelia/authelia:latest
     ports:
       - 9091:9091:tcp
     environment:
-      TZ: ''
+      TZ: 'YOUR_TZ'
     volumes:
       - /portainer/Files/AppData/Config/Authelia:/etc/authelia/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.authelia.rule=Host(`authelia.example.com)" ##replace with your auth subdomain.yourdomain.xyz
+      - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://authelia.example.com" ##Replace both instances of {authelia} with rour chosen authelia container name.
+      - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
+      - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
+      - "traefik.http.routers.authelia.tls=true"
     networks: proxy
+
+networks:
+  proxy:
+    external: true
