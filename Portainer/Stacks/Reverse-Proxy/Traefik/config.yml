@@ -59,7 +59,7 @@ http:
           - Remote-User
           - Remote-Groups
           - Remote-Name
-         - Remote-Email
+          - Remote-Email
 
     # Security headers
     securityHeaders:
