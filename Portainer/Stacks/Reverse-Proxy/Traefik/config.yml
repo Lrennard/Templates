@@ -22,13 +22,8 @@ http:
           X-Forwarded-Proto: https
     pihole-redirect:
       redirectRegex:
-        regex: "^https?://pihole.cornouiller.xyz/$"
-        replacement: "https://pihole.cornouiller.xyz/admin/"
-    pihole2-redirect:
-      redirectRegex:
-        regex: "^https?://pihole2.cornouiller.xyz/$"
-        replacement: "https://pihole2.cornouiller.xyz/admin/"
-
+        regex: "^https?://pihole.example.com/$" #I think this can be replaced with addPrefix:
+        replacement: "https://pihole.example.com/admin/" # prefix: "/admin"
 
     # Only Allow Local networks
     #local-ipwhitelist:
