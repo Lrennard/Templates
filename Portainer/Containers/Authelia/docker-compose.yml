@@ -5,7 +5,7 @@ services:
     ports:
       - 9091:9091:tcp
     environment:
-      TZ: ''
+      TZ: 'America/New_York'
     volumes:
       - /portainer/Files/AppData/Config/Authelia:/etc/authelia/
     networks: proxy

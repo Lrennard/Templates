@@ -30,9 +30,9 @@ http:
     # ipWhiteList:
      #  sourceRange: 
      #    - 127.0.0.1/32 # localhost
+     #    - 192.168.0.0/16
      #    - 172.16.0.0./16
      #    - 10.10.0.0/16
-     #    - 10.0.100.0/24
   
     # Authelia guard
     auth:
@@ -80,6 +80,7 @@ http:
       chain:
         middlewares:
         - default-whitelist
+        - auth
         - default-headers
 # Only use secure ciphers - https://ssl-config.mozilla.org/#server=traefik&version=2.6.0&config=intermediate&guideline=5.6
 tls:
