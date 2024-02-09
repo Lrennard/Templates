@@ -1,4 +1,3 @@
----
 version: '3'
 
 services:
@@ -44,33 +43,6 @@ services:
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.services.web.loadbalancer.server.port=3000"
       - "traefik.docker.network=proxy"
-
-  authelia:
-    image: authelia/authelia:latest
-    ports:
-      - 9091:9091:tcp
-    environment:
-      TZ: 'YOUR_TZ'
-    volumes:
-      - /portainer/Files/AppData/Config/Authelia:/etc/authelia/
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.authelia.rule=Host(`authelia.example.com)" ##replace with your auth subdomain.yourdomain.xyz
-      - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://authelia.example.com" ##Replace both instances of {authelia} with rour chosen authelia container name.
-      - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
-      - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
-      - "traefik.http.routers.authelia.tls=true"
-    networks: proxy
-
-  cloudflare-ddns:
-    image: oznu/cloudflare-ddns:latest
-    restart: always
-    environment:
-      - API_KEY=xxxxxxx
-      - ZONE=example.com
-      - SUBDOMAIN=subdomain
-      - PROXIED=false
-    networks: proxy
 
 networks:
   proxy:
