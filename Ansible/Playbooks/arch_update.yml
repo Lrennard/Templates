@@ -1,0 +1,11 @@
+---
+- name: Perform System Upgrade on Arch Workstations
+  hosts: arch_workstations
+  become: yes  # Use privilege escalation (sudo)
+  become_method: su
+
+  tasks:
+    - name: Update package cache and upgrade packages (Arch Linux)
+      community.general.pacman:
+        update_cache: true
+        upgrade: true

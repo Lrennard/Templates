@@ -1,0 +1,12 @@
+- hosts: "arch_workstations"
+  become: yes
+  tasks:
+    - name: Install X11 and X11-deps, Arch
+      community.general.pacman:
+        name:
+          - firefox
+          - dolphin
+          - konsole
+          - lynx
+          - cool-retro-term
+        state: present

@@ -1,0 +1,12 @@
+- hosts: "*"
+  become: yes
+  tasks:
+    - name: Install Plasma
+      community.general.pacman:
+        name:
+          - plasma
+        state: present
+    - name: Install SDDM
+      community.general.pacman:
+        name: sddm
+        state: present
