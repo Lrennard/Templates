@@ -1,10 +1,36 @@
 http:
 
   routers:
-
+    HomeAssistant:
+      entryPoints:
+        - https
+      rule: 'Host(`home.example.com`)'
+      middlewares:
+        ##- "auth"
+        - default-headers
+      tls: {}
+      service: HomeAssistant
+    Pihole:
+      entryPoints:
+        - https
+      rule: 'Host(`pihole.example.com`)'
+      middlewares:
+        - default-headers
+        - pihole-redirect
+      tls: {}
+      service: Pihole
           ## SERVERS ##
   services:
-    
+    HomeAssistant:
+      loadBalancer:
+        servers:
+          - url: "http://[IP]:[PORT]"
+        passHostHeader: true
+    Pihole:
+      loadBalancer:
+        servers:
+          - url: "http://[IP]:80"
+        passHostHeader: true
           ## MIDDLEWARES ##
   middlewares:
     https-redirect:
