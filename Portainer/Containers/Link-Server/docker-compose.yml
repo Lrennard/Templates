@@ -12,10 +12,10 @@ services:
       - META_KEYWORDS=HomeLab, HTML, CSS, Engineering, Systems Administrator, L3, Lee, L3Lee, L3 Lee, lll, lll3,
       - LANG=en
       - META_INDEX_STATUS=all
-      - OG_SITE_NAME=Leland Rennard
+      - OG_SITE_NAME=L3 Lee links
       - OG_TITLE=L3 Lee
       - OG_DESCRIPTION=la links de la L3
-      - OG_URL=https://lelandrennard.com
+      - OG_URL=https://l3lee.com
       - OG_IMAGE=
       - OG_IMAGE_WIDTH=400
       - OG_IMAGE_HEIGHT=400
@@ -24,7 +24,7 @@ services:
       - FAVICON_URL=
       - AVATAR_URL=
       - AVATAR_2X_URL=
-      - AVATAR_ALT=Yer
+      - AVATAR_ALT=Welcome
       - NAME=L3 Lee
       - BIO= Systems Administrator | Homelab Nut | 3D Printing Enthusiast | SIM Racer | 🇺🇸 | Tech Obsessed.
       # use ENV variable names for order, listed buttons will be boosted to the top
@@ -34,12 +34,12 @@ services:
       - CUSTOM_BUTTON_COLOR=#000000,#000000
       - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
       - CUSTOM_BUTTON_ICON=fas file-alt,fas fa-cog
-      - GITHUB=https://lelandrennard.com/github
-      - TWITTER=https://lelandrenanrd.com/twitter
-      - BLUESKY=https://lelandrenanard.com/bluesky
-      - INSTAGRAM=https://lelandrennard.com/instagram
-      - LINKED_IN=https://lelandrennard.com/linkedin
-      - DISCORD=https://lelandrennard/discord
+      - GITHUB=https://l3lee.com/github
+      - TWITTER=https://l3lee.com/twitter
+      - BLUESKY=https://l3lee.com/bluesky
+      - INSTAGRAM=https://l3lee.com/instagram
+      - LINKED_IN=https://l3lee.com/linkedin
+      - DISCORD=https://l3lee/discord
       - FOOTER=Leland Rennard © 2024
     ports:
       - 8080:3000
