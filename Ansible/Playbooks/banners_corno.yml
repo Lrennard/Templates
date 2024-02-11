@@ -1,0 +1,10 @@
+---
+- hosts: "*"
+  become: yes
+  become_method: su
+  tasks:
+    - name: Add Banner
+      copy:
+        src: /home/ansible/assets/banners/corno
+        dest: /etc/motd
+        follow: yes

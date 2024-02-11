@@ -1,0 +1,10 @@
+---
+- hosts: comms
+  become: yes
+  become_method: su
+  tasks:
+    - name: Add Banner
+      copy:
+        src: /home/hansible/assets/banners/comms
+        dest: /etc/motd
+        follow: yes
