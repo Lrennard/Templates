@@ -1,4 +1,6 @@
 # Templates
 
-resource&build storage repo
+Example Config's for my Home-Lab services
+
+Enjoy :)
 
