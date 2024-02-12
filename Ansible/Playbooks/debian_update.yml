@@ -1,0 +1,26 @@
+---
+- hosts: "*" # --limit on CLI to dprcify which host the playbook targets
+  become: yes  # Use privilege escalation (sudo)
+  become_method: su
+  tasks:
+    - name: Update package cache and upgrade packages (Ubuntu/Debian)
+      apt:
+        update_cache: yes
+        upgrade: yes
+      when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+
+#- hosts: linodes  # Combine the host groups
+#  become: yes  # Use privilege escalation (sudo)
+#
+#  vars_files:
+#     - ./group-vars/linode/vars.yaml
+#
+#  tasks:
+#    - name: Update package cache and upgrade packages (Ubuntu/Debian)
+#      apt:
+#        update_cache: yes
+#        upgrade: yes
+#        ssh_password: "{{ ssh_password }}"
+#        root_password: "{{ password }}"
+#      when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian

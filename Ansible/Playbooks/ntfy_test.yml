@@ -1,0 +1,14 @@
+---
+- hosts: "*"
+  tasks:
+   - ntfy:
+     topic: "admin-alerts"
+     url: "https://nfty.example.com"
+     msg: "that's a wrap"
+     attrs:
+        tags: [ rotating_light, heavy_check_mark ]
+        priority: 4
+        actions:
+           - action: view
+             label: "Open Mastodon"
+             url: "https://mastodon.social/@jpmens"

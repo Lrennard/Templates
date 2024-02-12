@@ -1,0 +1,21 @@
+- name: SDDM Started and Enabled
+  hosts: "*"
+  tasks:
+    - name: Enabled and Start- Qemu Guest Agent
+      become: yes
+      become_method: su
+      ansible.builtin.service:
+        name: qemu-guest-agent
+        enabled: yes
+    - name: Enabled and Start- Prom Node EXPTR
+      become: yes
+      become_method: su
+      ansible.builtin.service:
+        name: prometheus-node-exporter
+        enabled: yes
+  post_tasks:
+    - name: reboot machine
+      become: yes
+      become_method: su
+      reboot:
+        reboot_timeout: 3600

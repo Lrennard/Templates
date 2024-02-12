@@ -1,0 +1,8 @@
+- hosts: arch_workstations
+  name: Install Games and Requisite Apps on Dtops
+  become: yes
+  tasks:
+    - name: Install Minecraft
+      pacman:
+        name: minecraft-launcher
+        state: present

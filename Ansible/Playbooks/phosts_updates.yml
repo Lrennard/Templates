@@ -1,0 +1,21 @@
+---
+- hosts: portainer_servers
+  become: yes
+  become_method: su
+  tasks:
+    - name: update
+      become: true
+      apt: 
+        upgrade: yes
+        update_cache: yes
+      when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+    - name: send discord message
+      uri:
+        url: [Discord Webhook]
+        method: post
+        body_format: json
+        body: '{"content": "Updates "}'
+        headers:
+          Content-Type: application/json
+        status_code: 204
+      # when: failed

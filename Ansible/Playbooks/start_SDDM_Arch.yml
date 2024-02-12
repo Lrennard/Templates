@@ -1,0 +1,15 @@
+- name: SDDM Started and Enabled
+  hosts: "*"
+  tasks:
+    - name: Enabled and Start SDDM
+      become: yes
+      become_method: sudo
+      ansible.builtin.service:
+        name: sddm
+        enabled: yes
+  post_tasks:
+    - name: reboot machine
+      become: yes
+      become_method: sudo
+      reboot:
+        reboot_timeout: 3600
