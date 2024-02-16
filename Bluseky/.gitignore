@@ -1,0 +1,12 @@
+# Ignore .env files
+.env
+
+# ignore node modules
+node_modules
+
+# ignore packages
+package-lock.js
+package.json
+
+# ignore tsconfig
+tsconfig.json
