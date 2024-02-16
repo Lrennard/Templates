@@ -5,7 +5,7 @@
 node_modules
 
 # ignore packages
-package-lock.js
+package-lock.json
 package.json
 
 # ignore tsconfig
