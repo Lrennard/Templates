@@ -21,6 +21,25 @@ totp:
 #  # This secret can also be set using the env variables AUTHELIA_DUO_API_SECRET_KEY_FILE
 #  secret_key: 1234567890abcdefghifjkl
 
+ntp:
+  ## NTP server address.
+  address: "time.cloudflare.com:123"
+
+  ## NTP version.
+  version: 4
+
+  ## Maximum allowed time offset between the host and the NTP server.
+  max_desync: 3s
+
+  ## Disables the NTP check on startup entirely. This means Authelia will not contact a remote service at all if you
+  ## set this to true, and can operate in a truly offline mode.
+  disable_startup_check: false
+
+  ## The default of false will prevent startup only if we can contact the NTP server and the time is out of sync with
+  ## the NTP server more than the configured max_desync. If you set this to true, an error will be logged but startup
+  ## will continue regardless of results.
+  disable_failure: false
+
 authentication_backend:
   file:
     path: /config/users_database.yml
@@ -63,7 +82,7 @@ session:
   # This secret can also be set using the env variables AUTHELIA_SESSION_SECRET_FILE
   secret: unsecure_session_secret
   expiration: 3600  # 1 hour
-  inactivity: 300  # 5 minutes
+  inactivity: 900  # 15 minutes
   domain: example.com  # Should match whatever your root protected domain is
 
   # redis:
