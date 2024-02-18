@@ -1,0 +1,47 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/bookmarks
+- Admin:
+    - CloudFlare:
+        - abbr: CF
+          href: https://www.cloudflare.com
+
+- Developer:
+    - Github:
+        - abbr: GH
+          href: https://github.com/
+    - Docker Hub:
+        - abbr: DH
+          href: https://hub.docker.com/
+
+- Social:
+    - Reddit:
+        - abbr: RE
+          href: https://reddit.com/
+    - Bluesky:
+        - abbr: BSKY
+          href: https://bsky.app/
+    - HNews:
+        - abbr: HN
+          href: https://hackernews.com/
+    - Twitter:
+        - abbr: TW
+          href: https://www.twitter.com
+
+- Entertainment:
+    - YouTube:
+        - abbr: YT
+          href: https://youtube.com/
+    - Twitch:
+        - abbr: TW
+          href: https://www.twitch.tv/
+- Employment:
+    - Linkedin:
+        - abbr: LI
+          href: https://linkedin.com
+    - Indeed:
+        - abbr: IN
+          href: https://www.indeed.com
+    - CompTIA:
+        - abbr: TIA
+          href: https://www.comptia.org/content/it-careers-path-roadmap
