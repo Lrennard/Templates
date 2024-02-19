@@ -1,0 +1,7 @@
+Integrate NTFY Webhook's into bot script and resolve System's Incompatibility
+
+Add and Test Function for Compiling External Data to Post
+
+Add and Test User Input and Bot Response Functions
+
+Research OpenAI API Integration
