@@ -1,3 +1,9 @@
 [x]~~reflect variables from config in secrets~~
 
-[]Deploy and Test
+[x]~~Deploy and Test~~
+
+[]Furnish widgets
+
+[]Furnish bookmarks
+
+[]Furnish services

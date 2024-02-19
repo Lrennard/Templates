@@ -9,7 +9,7 @@ data:
   kubernetes.yaml: |
     mode: cluster
   settings.yaml: |
-    title: L3s' Internal Dash
+    title: L3s Internal Dash
 
     background:
       image: https://cdnb.artstation.com/p/assets/images/images/006/897/659/large/mikael-gustafsson-wallpaper-mikael-gustafsson.jpg
@@ -62,9 +62,9 @@ data:
             href: "{{HOMEPAGE_VAR_HOME_ASSISTANT_URL}}"
             description: home
             widget:
-                type: homeassistant
-                url: "{{HOMEPAGE_VAR_HOME_ASSISTANT_URL}}"
-                key: "{{HOMEPAGE_VAR_HOME_ASSISTANT_API_KEY}}"
+              type: homeassistant
+              url: "{{HOMEPAGE_VAR_HOME_ASSISTANT_URL}}"
+              ##key: "{{HOMEPAGE_VAR_HOME_ASSISTANT_API_KEY}}"
         - Mirror:
             icon: wled.png
             href: "{{HOMEPAGE_VAR_MIRROR_url}}"
@@ -73,8 +73,8 @@ data:
             icon: wled.png
             href: "{{HOMEPAGE_VAR_MON_WELD_url}}"
             description: Monitor Wled's
-        - LR-Ambi
-            icon: weld.png
+        - LR-Ambi:
+            icon: wled.png
             href: "{{HOMEPAGE_VAR_LR_AMBI_url}}"
             description: Living Room Ambilighting
     - Self-Hosted:
@@ -103,93 +103,93 @@ data:
             href: "{{HOMEPAGE_VAR_VAULT_url}}"
             description: Vault Warden
     - Monitoring:
-      - Uptime-Kuma:
-          icon: uptimekuma.png
-          href: "{{HOMEPAGE_VAR_UPTIME_KUMA_url}}"
-          description: Uptime Kuma
+        - Uptime-Kuma:
+            icon: uptimekuma.png
+            href: "{{HOMEPAGE_VAR_UPTIME_KUMA_url}}"
+            description: Uptime Kuma
     - Media:
-      - Jelly-Fin:
-          icon: jellyfin.png
-          href: "{{HOMEPAGE_VAR_JELLY_FIN_url}}"
-          description: Jelly Fin Media Server
-          widget:
-            type: jellyfin
-            url: "{{HOMEPAGE_VAR_JELLY_FIN_url}}"
-            key: "{{HOMEPAGE_VAR_JELLY_FIN_API_KEY}}"
-            enableBlocks: true # optional, defaults to false
-            enableNowPlaying: true # optional, defaults to true
-      - TransMission:
-          icon: transmission.png
-          href: "{{HOMEPAGE_VAR_TRANSMISSION_url}}"
-          description: TransMission Webapp
-    Internal Network:
-      - PfSense:
-          icon: pfsense.png
-          href: "{{HOMEPAGE_VAR_PFSENSE_url}}"
-          description: Pf-Sense Firewall
-      - Pihole-1:
-          icon: pihole.png
-          href: "{{HOMEPAGE_VAR_PIHOLE_URL_1}}"
-          description: Pihole 1
-          widget:
-            type: pihole
-            url: "{{HOMEPAGE_VAR_PIHOLE_URL_1}}"
-            key: "{{HOMEPAGE_VAR_PIHOLE_API_KEY_1}}"
-      - Pihole-2:
-          icon: pihole.png
-          href: "{{HOMEPAGE_VAR_PIHOLE_URL_2}}"
-          description: Pihole 2
-          widget:
-            type: pihole
-            url: "{{HOMEPAGE_VAR_PIHOLE_URL_2}}"
-            key: "{{HOMEPAGE_VAR_PIHOLE_API_KEY_2}}"
-      - Arak24P:
-          icon: araknis.png
-          href: "{{HOMEPAGE_VAR_ARAK24P_url}}"
-          description: Araknis 24P Managed Switch
-      - NG8P:
-          icon: netgear.png
-          href: "{{HOMEPAGE_VAR_NG8P_url}}"
-          description: Netgear 8P Managed Switch
-    Access Points:
-      - CH-AP:
-          icon: netgear.png
-          href: "{{HOMEPAGE_VAR_CH_AP_url}}"
-          description: CH A.P (R8000P)
-      - Iot-AP:
-          icon: netgear.png
-          href: "{{HOMEPAGE_VAR_IOT_AP_url}}"
-          description: Iot A.P (R7000P)
-      - GP-AP:
-          icon: asus.png
-          href: "{{HOMEPAGE_VAR_GP_AP_url}}"
-          description: GP A.P (RT-86U)
-    Servers:
-      - Teller:
-          icon: proxmox.png
-          href: "{{HOMEPAGE_VAR_PROXMOX_url}}"
-          description: Proxmox VE
-          widget:
-                type: proxmox
-                url: "{{HOMEPAGE_VAR_PROXMOX_URL}}"
-                username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
-                password: "{{HOMEPAGE_VAR_PROXMOX_API_KEY}}"
-                node: teller
-      - Traefik:
-          icon: traefik.png
-          href: "{{HOMEPAGE_VAR_TRAEFIK_url}}"
-          description: Traefik Reverse Proxy
-          widget:
-            type: traefik
-            url: "{{HOMEPAGE_VAR_TRAEFIK_url}}"
-      - Truenas:
-          icon: truenas.png
-          href: "{{HOMEPAGE_VAR_TRUENAS_url}}"
-          description: Truenas Core
-          widget:
-            type: truenas
-            url: "{{HOMEPAGE_VAR_TRUENAS_url}}"
-      - Portainer:
+        - Jelly-Fin:
+            icon: jellyfin.png
+            href: "{{HOMEPAGE_VAR_JELLY_FIN_url}}"
+            description: Jelly Fin Media Server
+            widget:
+              type: jellyfin
+              url: "{{HOMEPAGE_VAR_JELLY_FIN_url}}"
+              ##key: "{{HOMEPAGE_VAR_JELLY_FIN_API_KEY}}"
+              enableBlocks: true # optional, defaults to false
+              enableNowPlaying: true # optional, defaults to true
+        - TransMission:
+            icon: transmission.png
+            href: "{{HOMEPAGE_VAR_TRANSMISSION_url}}"
+            description: TransMission Webapp
+    - Internal Network:
+        - PfSense:
+            icon: pfsense.png
+            href: "{{HOMEPAGE_VAR_PFSENSE_url}}"
+            description: Pf-Sense Firewall
+        - Pihole-1:
+            icon: pihole.png
+            href: "{{HOMEPAGE_VAR_PIHOLE_URL_1}}"
+            description: Pihole 1
+            widget:
+              type: pihole
+              url: "{{HOMEPAGE_VAR_PIHOLE_URL_1}}"
+              ##key: "{{HOMEPAGE_VAR_PIHOLE_API_KEY_1}}"
+        - Pihole-2:
+            icon: pihole.png
+            href: "{{HOMEPAGE_VAR_PIHOLE_URL_2}}"
+            description: Pihole 2
+            widget:
+              type: pihole
+              url: "{{HOMEPAGE_VAR_PIHOLE_URL_2}}"
+              ##key: "{{HOMEPAGE_VAR_PIHOLE_API_KEY_2}}"
+        - Arak24P:
+            icon: araknis.png
+            href: "{{HOMEPAGE_VAR_ARAK24P_url}}"
+            description: Araknis 24P Managed Switch
+        - NG8P:
+            icon: netgear.png
+            href: "{{HOMEPAGE_VAR_NG8P_url}}"
+            description: Netgear 8P Managed Switch
+    - Access Points:
+        - CH-AP:
+            icon: netgear.png
+            href: "{{HOMEPAGE_VAR_CH_AP_url}}"
+            description: CH A.P (R8000P)
+        - Iot-AP:
+            icon: netgear.png
+            href: "{{HOMEPAGE_VAR_IOT_AP_url}}"
+            description: Iot A.P (R7000P)
+        - GP-AP:
+            icon: asus.png
+            href: "{{HOMEPAGE_VAR_GP_AP_url}}"
+            description: GP A.P (RT-86U)
+    - Servers:
+        - Teller:
+            icon: proxmox.png
+            href: "{{HOMEPAGE_VAR_PROXMOX_url}}"
+            description: Proxmox VE
+            widget:
+              type: proxmox
+              url: "{{HOMEPAGE_VAR_PROXMOX_URL}}"
+              ##username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
+              ##password: "{{HOMEPAGE_VAR_PROXMOX_API_KEY}}"
+              node: teller
+        - Traefik:
+            icon: traefik.png
+            href: "{{HOMEPAGE_VAR_TRAEFIK_url}}"
+            description: Traefik Reverse Proxy
+            widget:
+              type: traefik
+              url: "{{HOMEPAGE_VAR_TRAEFIK_url}}"
+        - Truenas:
+            icon: truenas.png
+            href: "{{HOMEPAGE_VAR_TRUENAS_url}}"
+            description: Truenas Core
+            widget:
+              type: truenas
+              url: "{{HOMEPAGE_VAR_TRUENAS_url}}"
+        - Portainer:
           icon: portainer.png
           href: "{{HOMEPAGE_VAR_PORTAINER_url}}"
           description: Portainer-ce
@@ -197,8 +197,7 @@ data:
             type: portainer
             url: "{{HOMEPAGE_VAR_PORTAINER_url}}"
             env: 1
-            key: "{{HOMEPAGE_VAR_PORTAINER_API_key}}"
-  widgets.yaml: |
+  widgets.yaml: | 
     - resources:
         cpu: true
         memory: true
