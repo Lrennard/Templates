@@ -1,0 +1,3 @@
+reflect variables from config in secrets
+
+Deploy and Test
