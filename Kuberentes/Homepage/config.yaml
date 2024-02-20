@@ -39,6 +39,10 @@ data:
       Media:
         header: true
         style: row
+        columns: 3
+      Printer's:
+        header: true
+        style: row
         columns: 2
       Internal Net:
         header: true
@@ -51,7 +55,7 @@ data:
       Servers:
         header: true
         style: row
-        columns: 5
+        columns: 6
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: ""
@@ -102,6 +106,15 @@ data:
             icon: bitwarden.png
             href: "{{HOMEPAGE_VAR_VAULT_url}}"
             description: Vault Warden
+    - Printers:
+        - OctoPrint:
+            icon: octoprint.png
+            href: "{{HOMEPAGE_VAR_OCTO_url}}"
+            description: Octo Print
+        - Orca:
+            icon: bambulab.png
+            href: "{{HOMEPAGE_VAR_ORCA_url}}"
+            description: Orca Slicer NoVNC
     - Monitoring:
         - Uptime-Kuma:
             icon: uptimekuma.png
@@ -122,6 +135,10 @@ data:
             icon: transmission.png
             href: "{{HOMEPAGE_VAR_TRANSMISSION_url}}"
             description: TransMission Webapp
+        - Tuberipper:
+            icon: youtube.png
+            href: "{{HOMEPAGE_VAR_TUBERIPPER_url}}"
+            description: Tube Ripper
     - Internal Network:
         - PfSense:
             icon: pfsense.png
@@ -175,6 +192,16 @@ data:
               ##username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
               ##password: "{{HOMEPAGE_VAR_PROXMOX_API_KEY}}"
               node: teller
+        - Turing:
+            icon: proxmox.png
+            href: "{{HOMEPAGE_VAR_PROXMOX_url}}"
+            description: proxmox
+            widget:
+              type: proxmox
+              url: "{{HOMEPAGE_VAR_PROXMOX_URL}}"
+              ##username: "{{HOMEPAGE_VAR_PROXMOX_USER}}"
+              ##password: "{{HOMEPAGE_VAR_PROXMOX_API_KEY}}"
+              node: pve2
         - Traefik:
             icon: traefik.png
             href: "{{HOMEPAGE_VAR_TRAEFIK_url}}"
@@ -197,7 +224,7 @@ data:
             type: portainer
             url: "{{HOMEPAGE_VAR_PORTAINER_url}}"
             env: 1
-  widgets.yaml: | 
+  widgets.yaml: |        
     - resources:
         cpu: true
         memory: true

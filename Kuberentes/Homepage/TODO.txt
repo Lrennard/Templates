@@ -6,4 +6,4 @@
 
 []Furnish bookmarks
 
-[]Furnish services
+[x]~~Furnish services~~
