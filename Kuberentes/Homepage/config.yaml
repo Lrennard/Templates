@@ -217,13 +217,13 @@ data:
               type: truenas
               url: "{{HOMEPAGE_VAR_TRUENAS_url}}"
         - Portainer:
-          icon: portainer.png
-          href: "{{HOMEPAGE_VAR_PORTAINER_url}}"
-          description: Portainer-ce
-          widget:
-            type: portainer
-            url: "{{HOMEPAGE_VAR_PORTAINER_url}}"
-            env: 1
+            icon: portainer.png
+            href: "{{HOMEPAGE_VAR_PORTAINER_url}}"
+            description: Portainer-ce
+            widget:
+              type: portainer
+              url: "{{HOMEPAGE_VAR_PORTAINER_url}}"
+              env: 1
   widgets.yaml: |        
     - resources:
         cpu: true
