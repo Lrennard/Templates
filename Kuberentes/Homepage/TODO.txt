@@ -2,8 +2,13 @@
 
 [x]~~Deploy and Test~~
 
+[x]~~Furnish services~~
+
+[]Resolve API fetch data errors.
+
 []Furnish widgets
 
 []Furnish bookmarks
 
-[x]~~Furnish services~~
+
+
