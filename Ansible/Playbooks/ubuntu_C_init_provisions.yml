@@ -1,40 +1,36 @@
 ---
 - hosts: "*"
   tasks:
-    - name: OS Utils
+    - name: Install Sudo&Vim
       become: yes
       become_method: su
       apt:
         name:
-           - nfs-common
-           - usbutils
-           - cifs-utils
+           - sudo
+           - vim
         state: present
-    - name: Install Neofetch,Sudo,Vim&TMUX
+    - name: Install neofetch
       become: yes
       become_method: su
       apt:
         name:
            - neofetch
-           - sudo
-           - vim
-           - tmux
-        state: present    
-    - name: Install Wget,Curl,Git
+        state: present
+    - name: Install curl&git
       become: yes
       become_method: su
       apt:
         name:
-           - wget
            - curl
            - git
         state: present
-    - name: Install Prometheus N.E & Qemu Guest Agent
+    - name: Install Prometheus N.E, nfs-common & qemu agent
       become: yes
       become_method: su
       apt:
         name:
            - prometheus-node-exporter
+           - nfs-common
            - qemu-guest-agent
         update_cache: yes
     - name: start guest qemu-guest-agent
