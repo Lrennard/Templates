@@ -1,0 +1,16 @@
+---
+- hosts: "*"
+  become: yes
+  become_method: su
+  tasks:
+    - name: get files
+      shell: "find * -name 'ssh_host*'"
+      register: files_to_delete
+      args:
+        chdir: "/etc/ssh"
+
+    - name:
+      file:
+        path: "/etc/ssh/{{item}}"
+        state: absent
+      with_items: "{{files_to_delete.stdout_lines}}"
