@@ -18,7 +18,7 @@ tasks:
 - name: add docker repository
   apt_repository:
     filename: docker
-    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
     state: present
 - name: install docker engine
   apt:
