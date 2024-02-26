@@ -1,11 +1,10 @@
 ---
-- name: install docker,docker-compose$portainer
-  hosts: "*"
-
+- hosts: "*"
+  become: yes
+  become_method: su
   pre_tasks:
+
     - name: install Server tools
-      become: yes
-      become_method: su
       apt:
         name:
           - git
@@ -13,10 +12,9 @@
           - vim
           - neofetch
         update_cache: yes
+
   tasks:
     - name: install Docker Dependencies
-      become: yes
-      become_method: su
       apt:
         name:
           - apt-transport-https
@@ -25,22 +23,18 @@
           - gnupg-agent
           - software-properties-common
         update_cache: yes
+
     - name: add docker gpg key
-      become: yes
-      become_method: su
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present
+
     - name: add docker repository
-      become: yes
-      become_method: su
       apt_repository:
         filename: docker
         repo: deb https://download.docker.com/linux/ubuntu jammy stable
         state: present
     - name: install docker engine
-      become: yes
-      become_method: su
       apt:
         name:
           - docker-ce
@@ -51,25 +45,23 @@
           - docker-compose-plugin
           - docker-compose
         update_cache: yes
+
     - name: Add user to the docker group
-      become: yes
-      become_method: su
       user:
         name: ansible
         groups:
           - docker
           - sudo
+
     - name: Reboot
-      become: yes
-      become_method: su
       reboot:
         reboot_timeout: 3600
+
   post_tasks:
     - name: create new volume
-      become: yes
-      become_method: su
       community.docker.docker_volume:
         name: portainer-data
+
     - name: deploy portainer
       community.docker.docker_container:
         name: portainer
@@ -80,6 +72,7 @@
           - /var/run/docker.sock:/var/run/docker.sock
           - portainer-data:/data
         restart_policy: unless-stopped
+
     - name: Deploy Portainer Agent
       community.docker.docker_container:
         name: portainer_agent
