@@ -1,6 +1,6 @@
 ---
-- hosts: "*" # Define host via cli arguement -i
-  gather_facts: False # Facts gathered by group_by_os.yml
+- hosts: all # Define host via cli arguement -i
+  gather_facts: True # Facts gathered by group_by_os.yml
   become: yes  # Use privilege escalation (sudo)
   become_method: su #Escalate privilieges from ssh_user session
   tasks:
