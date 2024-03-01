@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: iscsi-pvc
+
+spec:
+  storageClassName: iscsi
+  accessModes:
+    - ReadWriteMany
+
+  resources:
+    requests:
+      storage: 25Gi

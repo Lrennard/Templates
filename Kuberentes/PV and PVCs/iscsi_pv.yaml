@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: iscsi-pv
+spec:
+  storageClassName: iscsi
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteMany
+  iscsi:
+    targetPortal: <ISCSI_HOST_IP>
+    iqn: <YOUR_IQN:ISCSI_SHARE>  
+    lun: 0
+    fsType: 'ext4'
+    readOnly: false

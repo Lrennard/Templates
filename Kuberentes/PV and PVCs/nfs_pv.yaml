@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-db-pv
+
+spec:
+  storageClassName: nfs
+  mountOptions:
+    - nfsvers=4.1
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 25Gi
+  nfs:
+    path:  <NFS_SHARE_PATH>
+    server: <IP_or_HOST>
