@@ -8,7 +8,7 @@
 
 []Furnish widgets
 
-[]Furnish bookmarks
+[x]~~Furnish bookmarks~~
 
 
 
