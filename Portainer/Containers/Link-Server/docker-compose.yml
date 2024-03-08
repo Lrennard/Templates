@@ -6,41 +6,41 @@ services:
     # image: timothystewart6/littlelink-server:latest
     container_name: littlelink-server
     environment:
-      - META_TITLE= "{{META_TITLE}}"
-      - META_DESCRIPTION=Systems Administrator | Homelab Nut | 3D Printing Enthusiast | SIM Racer | 🇺🇸 | Tech Obsessed.
-      - META_AUTHOR= "{{META_AUTHOR}}"
-      - META_KEYWORDS=HomeLab, HTML, CSS, Engineering, Systems Administrator, L3, Lee, L3Lee, L3 Lee, lll, lll3,
-      - LANG=en
+      - META_TITLE=${META_TITLE}
+      - META_DESCRIPTION=${META_DESCRIPTION}
+      - META_AUTHOR=${META_AUTHOR}
+      - META_KEYWORDS=${META_KEYWORDS}
+      - LANG={LANG}
       - META_INDEX_STATUS=all
-      - OG_SITE_NAME= "{{OG_SITE_NAME}}"
-      - OG_TITLE= "{{OG_TITLE}}"
-      - OG_DESCRIPTION=la links de la L3
-      - OG_URL= "{{OG_URL}}"
-      - OG_IMAGE=
+      - OG_SITE_NAME=${OG_SITE_NAME}
+      - OG_TITLE=${OG_TITLE}
+      - OG_DESCRIPTION=${OG_DESCRIPTION}
+      - OG_URL=${OG_URL}
+      - OG_IMAGE=${OG_IMAGE}
       - OG_IMAGE_WIDTH=400
       - OG_IMAGE_HEIGHT=400
       - GA_TRACKING_ID=G-XXXXXXXXXX
-      - THEME=Dark
-      - FAVICON_URL= "{{FAVICON_URL}}"
-      - AVATAR_URL=
-      - AVATAR_2X_URL=
-      - AVATAR_ALT=Welcome
+      - THEME=${THEME}
+      - FAVICON_URL=${FAVICON_URL}
+      - AVATAR_URL=${AVATAR_URL}
+      - AVATAR_2X_URL=${AVATAR_2X_URL}
+      - AVATAR_ALT=${AVATAR_ALT}
       - NAME=${NAME}
-      - BIO= Systems Administrator | Homelab Nut | 3D Printing Enthusiast | SIM Racer | 🇺🇸 | Tech Obsessed.
+      - BIO=${BIO}
       # use ENV variable names for order, listed buttons will be boosted to the top
-      - BUTTON_ORDER=GITHUB,LINKED_IN,TWITTER,INSTAGRAM,DISCORD,BLUESKY,DOCUMENTATION
+      - BUTTON_ORDER=${BUTTON_ORDER}
       # you can render an unlimited amount of custom buttons by adding 
       # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
       - CUSTOM_BUTTON_COLOR=#000000,#000000
       - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
       - CUSTOM_BUTTON_ICON=fas file-alt,fas fa-cog
-      - GITHUB=  "{{GITHUB}}"
-      - TWITTER= "{{TWITTER}}"
-      - BLUESKY= "{{BLUESKY}}"
-      - INSTAGRAM= "{{INSTAGRAM}}"
-      - LINKED_IN= "{{LINKED_IN}}"
-      - DISCORD=$ "{{DISCORD}}"
-      - FOOTER= "{{FOOTER}}"
+      - GITHUB=${GITHUB}
+      - TWITTER=${TWITTER}
+      - BLUESKY=${BLUESKY}
+      - INSTAGRAM=${INSTAGRAM}
+      - LINKED_IN=${LINKED_IN}
+      - DISCORD=${DISCORD}
+      - FOOTER=${FOOTER}
     ports:
       - 8080:3000
     restart: unless-stopped
