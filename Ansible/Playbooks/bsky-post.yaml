@@ -1,0 +1,5 @@
+---
+- hosts: bskybot
+  name: Create Post on Bluesky
+  roles:
+    - bluesky

@@ -1,0 +1,45 @@
+---
+- name: Create Session With Bluesky API
+  ansible.builtin.uri:
+    url: "https://bsky.social/xrpc/com.atproto.server.createSession"
+    method: POST
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+    body:
+      identifier: "{{ BSKY_HANDLE}}" # Handle needs to pre-pend .bsky.social (example.bsky.social) ## Should be stored in hosts vars file or can be passed via CLI {ansible-playbook bsky-post.yaml -e "BSKY_HANDLE=your_handle BSKY_PASSWORD=your_password"}
+      password: "{{ BSKY_PASSWORD }}" # Vars can be passed to play via CLI can be passed via CLI {ansible-playbook bsky-post.yaml -e "BSKY_HANDLE=your_handle BSKY_PASSWORD=your_password"}
+  register: api_response
+
+- name: api debug
+  debug:
+    var: api_response
+
+- name: Handle Authentication Error
+  fail:
+    msg: "Authentication failed. Invalid identifier or password."
+  when: api_response.status == 401
+
+- name: Extract accessJwt from API response
+  set_fact:
+    access_token: "{{ api_response.json.accessJwt }}"
+
+- name: Create Post
+  uri:
+    url: "https://bsky.social/xrpc/com.atproto.repo.createRecord"
+    method: POST
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer {{ access_token }}"
+    body:
+      repo: "{{ BSKY_HANDLE }}"
+      collection: "app.bsky.feed.post"
+      record:
+        text: "Hello world! this post is an API call executed via Ansible." #This is up to you.
+        createdAt: "{{ lookup('pipe', 'date -u +%Y-%m-%dT%H:%M:%SZ') }}"
+  register: post_response
+
+- name: Debug API response
+  debug:
+    var: post_response
