@@ -4,7 +4,7 @@ services:
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:
-      - API_KEY=xxxxxxx
-      - ZONE=example.com
-      - SUBDOMAIN=subdomain
-      - PROXIED=false
+      - API_KEY=${API_KEY}
+      - ZONE=${ZONE}
+      - SUBDOMAIN=${SUBDOMAIN}
+      - PROXIED=${PROXIED}
