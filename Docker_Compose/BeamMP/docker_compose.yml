@@ -7,6 +7,11 @@ services:
             - '30814:30814/tcp'
             - '30814:30814/udp'
         environment:
-            - BEAMMP_NAME=
-            - BEAMMP_AUTH_KEY=
-            - BEAMMP_MAP=
+            - BEAMMP_NAME=${BEAMMP_NAME}
+            - BEAMMP_AUTH_KEY=${BEAMMP_AUTH_KEY}
+            - BEAMMP_MAP=${BEAMMP_MAP}
+        networks: gameservers
+
+networks:
+  gameservers:
+    external: true
