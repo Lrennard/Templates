@@ -8,3 +8,8 @@ services:
     ports:
       - 8888:8080
     restart: unless-stopped 
+    networks:
+      - RDP
+networks: 
+  RDP:
+    driver: bridge
