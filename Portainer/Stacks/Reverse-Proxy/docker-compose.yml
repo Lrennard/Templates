@@ -15,9 +15,9 @@ services:
       - 443:443
       #- 8080:8080 ##You Shouldn't do This, just Git Gud ;P
     environment:
-      - CF_API_EMAIL=admin@example.com
-      - CF_DNS_API_TOKEN= {YOUR_DNS_TOKEN}
-      # - CF_API_KEY=YOUR_API_KEY
+      - CF_API_EMAIL=${CF_API_EMAIL}
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+      # - CF_API_KEY={CF_API_KEY}
       # be sure to use the correct one depending on if you are using a token or key
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -26,18 +26,18 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.example.com`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`)"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.middlewares=authelia"
-      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.example.com`)"
+      - "traefik.http.routers.traefik-secure.middlewares=auth"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.${DOMAIN}`)"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].main=example.com"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.example.com"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=${DOMAIN}"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.${DOMAIN}"
       - "traefik.http.routers.traefik-secure.service=api@internal"
       - "traefik.http.routers.web.entrypoints=https"
-      - "traefik.http.routers.web.rule=Host(`traefik.example.com`)"
+      - "traefik.http.routers.web.rule=Host(`traefik.${DOMAIN}`)"
       - "traefik.http.routers.web.tls=true"
       - "traefik.http.routers.web.service=web"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
@@ -47,16 +47,18 @@ services:
 
   authelia:
     image: authelia/authelia:latest
-    ports:
-      - 9091:9091:tcp
+    container_name: auth
+    expose:
+      - 9091
     environment:
-      TZ: 'YOUR_TZ'
+      - TZ=${TIME_ZONE}
     volumes:
       - /portainer/Files/AppData/Config/Authelia:/etc/authelia/
+      - /portianer/Files/AppData/Config/Authelia:/config
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.authelia.rule=Host(`authelia.example.com)" ##replace with your auth subdomain.yourdomain.xyz
-      - "traefik.http.middlewares.authelia.forwardauth.address=http://authelia:9091/api/verify?rd=https://authelia.example.com" ##Replace both instances of {authelia} with rour chosen authelia container name.
+      - "traefik.http.routers.authelia.rule=Host(`${AUTHELIA_HOST}.${DOMAIN}`)" ##replace with your auth subdomain.yourdomain.xyz
+      - "traefik.http.middlewares.authelia.forwardauth.address=http://${AUTHELIA_HOST}:9091/api/verify?rd=https://${AUTHELIA_HOST}.${DOMAIN}" ##Replace both instances of {authelia} with rour chosen authelia container name.
       - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
       - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
       - "traefik.http.routers.authelia.tls=true"
@@ -66,9 +68,9 @@ services:
     image: oznu/cloudflare-ddns:latest
     restart: always
     environment:
-      - API_KEY=xxxxxxx
-      - ZONE=example.com
-      - SUBDOMAIN=subdomain
+      - API_KEY=${CF_API_KEY}
+      - ZONE=${DOMAIN}
+      - SUBDOMAIN=${SUBDOMAIN}
       - PROXIED=false
     networks: proxy
 
