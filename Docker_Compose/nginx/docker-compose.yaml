@@ -1,0 +1,19 @@
+---
+services:
+  nginx:
+    image: lscr.io/linuxserver/nginx:latest
+    container_name: nginx
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    labels:
+      - "traefik.enable=true" # enables the service
+      - "traefik.http.routers.nginx.rule=Host(`${FQDN}`)" # domain to expose on
+      - "traefik.http.routers.nginx.entrypoints=${ENTRY_POINT}" # if you named your 443 entrypoint differently than webscure, substitute it here!
+      - "traefik.http.routers.nginx.tls.certresolver=${CRESOLVER}" # if you named your cert resolver differently than letsencrypt, substitute it here!
+    volumes:
+      - /path/to/nginx/config:/config
+    networks:
+      - external-hosting
+    restart: unless-stopped
