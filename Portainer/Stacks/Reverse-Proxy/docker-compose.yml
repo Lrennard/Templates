@@ -44,8 +44,9 @@ services:
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.services.web.loadbalancer.server.port=3000"
       - "traefik.docker.network=proxy"
-
-  authelia:
+    depends_on:
+      - auth
+  auth:
     image: authelia/authelia:latest
     container_name: auth
     expose:
