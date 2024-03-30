@@ -34,7 +34,8 @@ services:
     environment:
       RABBITMQ_USERNAME: ${ONLYOFFICE_DOCUMENT_RABBITMQ_USER}
       RABBITMQ_PASSWORD: ${ONLYOFFICE_DOCUMENT_RABBITMQ_PASSWORD}
-      POSTGRES_PASSWORD: ${ONLYOFFICE_DOCUMENT_DB_PASSWORD}
+    expose:
+      - '5672'
     networks:
       - onlyoffice-network
     healthcheck:
@@ -60,7 +61,7 @@ services:
       DB_NAME: ${ONLYOFFICE_DOCUMENT_DB_NAME}
       DB_USER: ${ONLYOFFICE_DOCUMENT_DB_USER}
       DB_PWD: ${ONLYOFFICE_DOCUMENT_DB_PASSWORD}
-      AMQP_URI: amqp://${ONLYOFFICE_DOCUMENT_RABBITMQ_USER}:${ONLYOFFICE_DOCUMENT_RABBITMQ_PASSWORD}@rabbitmq-onlyoffice-document
+      AMQP_URI: amqp://${ONLYOFFICE_DOCUMENT_RABBITMQ_USER}:${ONLYOFFICE_DOCUMENT_RABBITMQ_PASSWORD}@onlyoffice-test-rabbitmq-onlyoffice-document-1
       REDIS_SERVER_HOST: redis-onlyoffice-document
       REDIS_SERVER_PORT: 6379
       JWT_ENABLED: true
@@ -76,7 +77,6 @@ services:
       - "traefik.http.routers.onlyoffice-document.entrypoints=websecure"
       - "traefik.http.services.onlyoffice-document.loadbalancer.server.port=80"
       - "traefik.http.routers.onlyoffice-document.tls=true"
-      - "traefik.http.routers.onlyoffice-document.tls.certresolver=letsencrypt"
     restart: unless-stopped
     depends_on:
       rabbitmq-onlyoffice-document:
