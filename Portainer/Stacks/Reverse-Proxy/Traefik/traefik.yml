@@ -1,7 +1,29 @@
 global:
   checkNewVersion: true
   sendAnonymousUsage: false
-   
+
+#--(Optional) Change Log Level and Format here...
+#     - loglevels [DEBUG, INFO, WARNING, ERROR, CRITICAL]
+#     #     - format [common, json, logfmt]
+log:
+  level: DEBUG
+  filePath: /var/log/traefik/traefik.log
+# -- (Optional) Enable Accesslog and change Format here...
+#     - format [common, json, logfmt]
+accesslog:
+  format: common
+  filePath: /var/log/traefik/access.log
+metrics:
+  prometheus:
+    addServicesLabels: true
+    addRoutersLabels: true
+    addEntryPointsLabels: true
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
+
 entryPoints:
   http:
     address: ":80"
@@ -66,3 +88,8 @@ certificatesResolvers:
         resolvers:
           - "1.1.1.1:53"
           - "1.0.0.1:53"
+experimental:
+  plugins:
+    sablier:
+      moduleName: "github.com/acouvreur/sablier"
+      version: "v1.7.0-beta.5"

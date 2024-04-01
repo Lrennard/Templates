@@ -7,7 +7,7 @@ http:
       rule: 'Host(`home.example.com`)'
       middlewares:
         ##- "auth"
-        - default-headers
+        - securityHeaders
       tls: {}
       service: HomeAssistant
     Pihole:
@@ -15,7 +15,7 @@ http:
         - https
       rule: 'Host(`pihole.example.com`)'
       middlewares:
-        - default-headers
+        - securityHeaders
         - pihole-redirect
       tls: {}
       service: Pihole
@@ -39,7 +39,7 @@ http:
     default-headers:
       headers:
         frameDeny: true
-       #sslRedirect: true
+        sslRedirect: true
         browserXssFilter: true
         contentTypeNosniff: true
         forceSTSHeader: true
@@ -49,6 +49,27 @@ http:
         customFrameOptionsValue: SAMEORIGIN
         customRequestHeaders:
           X-Forwarded-Proto: https
+
+    # Security headers
+    securityHeaders:
+      headers:
+        customResponseHeaders:
+          X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
+          server: ""
+          X-Forwarded-Proto: "https"
+        sslProxyHeaders:
+          X-Forwarded-Proto: https
+        referrerPolicy: "strict-origin-when-cross-origin"
+        hostsProxyHeaders:
+          - "X-Forwarded-Host"
+        customRequestHeaders:
+          X-Forwarded-Proto: "https"
+        contentTypeNosniff: true
+        browserXssFilter: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsSeconds: 63072000
+        stsPreload: true
     pihole-redirect:
       redirectRegex:
         regex: "^https?://pihole.example.com/$" #I think this can be replaced with addPrefix:
@@ -85,32 +106,51 @@ http:
           - Remote-Name
           - Remote-Email
 
-    # Security headers
-    securityHeaders:
-      headers:
-        customResponseHeaders:
-          X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
-          server: ""
-          X-Forwarded-Proto: "https"
-        sslProxyHeaders:
-          X-Forwarded-Proto: https
-        referrerPolicy: "strict-origin-when-cross-origin"
-        hostsProxyHeaders:
-          - "X-Forwarded-Host"
-        customRequestHeaders:
-          X-Forwarded-Proto: "https"
-        contentTypeNosniff: true
-        browserXssFilter: true
-        forceSTSHeader: true
-        stsIncludeSubdomains: true
-        stsSeconds: 63072000
-        stsPreload: true
     secured:
       chain:
         middlewares:
-        - default-whitelist
-        - auth
-        - default-headers
+        - securityHeaders
+    sonarr-dark:
+      plugin:
+        themepark:
+          # The name of the supported application listed on https://docs.theme-park.dev/themes.
+          app: sonarr
+
+          # The name of the supported theme listed on https://docs.theme-park.dev/theme-options/ or https://docs.theme-park.dev/community-themes/
+          theme: dark
+
+          # baseUrl is optional if you want to use a self-hosted version of theme.park
+          #baseUrl: https://theme-park.domain.tld
+
+          # This currently only supports '4k-logo' and 'darker' addons. Future addons that follow a similar syntax will work as well.
+          # For refernce: https://docs.theme-park.dev/themes/addons/
+          addons:
+            - sonarr-4k-logo
+    radarr-theme:
+      plugin:
+        themepark:
+          # The name of the supported application listed on https://docs.theme-park.dev/themes.
+          app: radarr
+
+          # If using the 'darker' addon the theme MUST be excluded or set to 'base'
+          theme: base
+
+          # Multiple addons can be included at the same time
+          addons:
+            - radarr-darker
+            - radarr-4k-logo
+    my-sablier:
+      plugin:
+        sablier:
+          dynamic:
+            displayName: My Title
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: hacker-terminal
+          group: default
+          names: guacamole
+          sablierUrl: http://sablier:10000
+          sessionDuration: 1m
 # Only use secure ciphers - https://ssl-config.mozilla.org/#server=traefik&version=2.6.0&config=intermediate&guideline=5.6
 tls:
   options:
