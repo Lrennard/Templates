@@ -42,8 +42,6 @@ services:
       - "traefik.http.routers.web.service=web"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
-      - "traefik.http.services.web.loadbalancer.server.port=3000"
-      - "traefik.docker.network=proxy"
     depends_on:
       - auth
   auth:
@@ -58,11 +56,11 @@ services:
       - /portianer/Files/AppData/Config/Authelia:/config
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.authelia.rule=Host(`${AUTHELIA_HOST}.${DOMAIN}`)" ##replace with your auth subdomain.yourdomain.xyz
-      - "traefik.http.middlewares.authelia.forwardauth.address=http://${AUTHELIA_HOST}:9091/api/verify?rd=https://${AUTHELIA_HOST}.${DOMAIN}" ##Replace both instances of {authelia} with rour chosen authelia container name.
-      - "traefik.http.middlewares.authelia.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
-      - "traefik.http.middlewares.authelia.forwardauth.trustForwardHeader=true"
-      - "traefik.http.routers.authelia.tls=true"
+      - "traefik.http.routers.auth.rule=Host(`${AUTHELIA_HOST}.${DOMAIN}`)" ##replace with your auth subdomain.yourdomain.xyz
+      - "traefik.http.middlewares.auth.forwardauth.address=http://${AUTHELIA_HOST}:9091/api/verify?rd=https://${AUTHELIA_HOST}.${DOMAIN}" ##Replace both instances of {authelia} with rour chosen authelia container name.
+      - "traefik.http.middlewares.auth.forwardauth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
+      - "traefik.http.middlewares.auth.forwardauth.trustForwardHeader=true"
+      - "traefik.http.routers.auth.tls=true"
     networks: proxy
 
   cloudflare-ddns:
