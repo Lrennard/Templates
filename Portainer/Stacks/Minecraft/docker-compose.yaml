@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+## Vanilla 1.20.4 Server ##
+  vanilla:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "TRUE" 
+      VERSION: 1.20.4
+    volumes:
+      - /portainer/Files/AppData/Config/Vanilla-data:/data
+    networks:
+      - mc
+## Tectonic Fabric Server ##
+  oasis:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "TRUE"
+      TYPE: FABRIC
+      VERSION: 1.20.4
+      MODRINTH_PROJECTS: |
+        tectonic:H8adpDEF
+        fabric-api:htRy7kbI
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+    volumes:
+      - /portainer/Files/AppData/Config/Oasis-data:/data
+## Minecraft Router Server ##
+  router:
+    image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
+    depends_on:
+      - vanilla
+      - oasis
+    environment:
+      MAPPING: |
+        vanilla.example.com=mc-vanilla-1:25565
+        test.example.com=mc-oasis-1:25565
+        tekkit2.example.com=tekkit2-tekkit-server-1:25565
+    networks:
+      - mc
+    ports:
+      - "25565:25565"
+networks:
+  mc:
+    name: mc
