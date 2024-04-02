@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  router:
+    image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
+    environment:
+      MAPPING: |
+        vanilla.example.com=vanilla:25565
+    networks:
+      - mc
+    ports:
+      - "25565:25565"
+networks:
+  mc:
+    name: mc
