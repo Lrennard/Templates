@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+## Vanilla 1.20.4 Server ##
+  vanilla:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "TRUE" 
+      VERSION: 1.20.4
+    volumes:
+      - /portainer/Files/AppData/Config/Vanilla-data:/data
+    networks:
+      - mc

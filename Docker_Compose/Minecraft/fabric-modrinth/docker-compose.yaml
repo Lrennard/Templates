@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  ${CONTAINER_NAME}:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "TRUE"
+      TYPE: FABRIC
+      VERSION: ${VERSION}
+      MODRINTH_PROJECTS: |
+        fabric-api:${FABRIC_VERSION}
+      MODRINTH_DOWNLOAD_DEPENDENCIES: ${DEPENDENCIES}
+    volumes:
+      - /portainer/Files/AppData/Config/${CONTAINER_NAME}-data:/data
