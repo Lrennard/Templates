@@ -45,6 +45,13 @@ entryPoints:
     address: ":443"
     forwardedHeaders:
      insecure: true
+  minecraft:
+    address: ":25565"
+      #proxyProtocol:
+      #insecure: true
+    forwardedHeaders:
+      insecure: true
+      
 serversTransport:
   insecureSkipVerify: true 
 providers:
