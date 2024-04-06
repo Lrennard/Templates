@@ -9,8 +9,6 @@ services:
       MEMORY: 2G
     volumes:
       - /portainer/Files/AppData/Config/Vanilla-data:/data
-     # - /etc/localtime:/etc/localtime:ro 
-     # - /etc/timezone:/etc/timezone:ro
     networks:
       - mc
     restart: unless-stopped
@@ -31,8 +29,6 @@ services:
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - /portainer/Files/AppData/Config/Oasis-data:/data
-     # - /etc/localtime:/etc/localtime:ro
-     # - /etc/timezone:/etc/timezone:ro
     networks:
       - mc
     restart: unless-stopped
