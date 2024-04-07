@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  proxy:
+    image: itzg/bungeecord
+    environment:
+      TYPE: VELOCITY
+      DEBUG: "false"
+      ENABLE_RCON: "true"
+    networks:
+      - mc
+    ports:
+      - "25565:25577"
+    volumes:
+      - ./velocity.toml:/server/velocity.toml
+      - proxy:/server
+
+volumes:
+  proxy: {}
