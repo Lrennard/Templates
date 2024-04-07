@@ -26,12 +26,28 @@ services:
         fabric-api:htRy7kbI
         journeymap:YzYzLujr
         fallingtree:mb15RrXi
+        dynamic-lighting:Y1UP7YoY
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - /portainer/Files/AppData/Config/Oasis-data:/data
     networks:
       - mc
     restart: unless-stopped
+  
+  proxy:
+    image: itzg/bungeecord
+    environment:
+      TYPE: VELOCITY
+      DEBUG: "false"
+      ENABLE_RCON: "true"
+    networks:
+      - mc
+    ports:
+      - "25565:25577"
+    volumes:
+      - /portainer/Files/AppData/Config/proxy/velocity.toml:/server/velocity.toml
+      - /portainer/Files/AppData/Config/proxy:/server
+  
   router:
     image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
      #volumes:
