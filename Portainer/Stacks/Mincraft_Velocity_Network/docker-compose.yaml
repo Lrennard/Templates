@@ -1,0 +1,88 @@
+version: '3.8'
+services:
+  vanilla:
+    image: itzg/minecraft-server
+    environment:
+      TYPE: ${VANILLA_TYPE}
+      ONLINE_MODE: ${OM}
+      EULA: "TRUE"
+      VERSION: ${VANILLA_VERSION}
+      TZ: ${TZ}
+      UID: ${VANILLA_UID}
+      GID: ${VANILLA_GID}
+      MEMORY: ${VANILLA_MEM}
+      MODRINTH_PROJECTS: |
+        fabricproxy-lite:Mxw3Cbsk
+        fabric-api:htRy7kbI
+        dynamic-lights:Y1UP7YoY
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+    volumes:
+      - Vanilla:/data
+    networks:
+      - mc
+    restart: unless-stopped
+
+  tectonic:
+    image: itzg/minecraft-server
+    environment:
+      TYPE: ${TECT_TYPE}
+      ONLINE_MODE: ${OM}
+      EULA: "TRUE"
+      VERSION: ${TECT_VERSION}
+      TZ: ${TZ}
+      UID: ${TECT_UID}
+      GID: ${TECT_UID}
+      MEMORY: ${TECT_MEM}
+      MODRINTH_PROJECTS: |
+        fabric-api:htRy7kbI
+        fabricproxy-lite:Mxw3Cbsk
+        tectonic:H8adpDEF
+        journeymap:YzYzLujr
+        fallingtree:mb15RrXi
+        dynamic-lights:Y1UP7YoY
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+    volumes:
+      - Tectonic:/data
+    networks:
+      - mc
+    restart: unless-stopped
+  
+  router:
+    image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
+    depends_on:
+      - vanilla
+      - tectonic
+    environment:
+      TZ: "America/New_York"
+      MAPPING: |
+        vanilla.example.com=oasis-vanilla-1:25565
+        tectonic.example.com=oasis-tectonic-1:25565
+    networks:
+      - mc
+    restart: unless-stopped
+
+  proxy:
+    image: itzg/bungeecord
+    environment:
+      TYPE: VELOCITY
+      DEBUG: "false"
+      ENABLE_RCON: "true"
+    networks:
+      - mc
+    ports:
+      - "25565:25577"
+    volumes:
+      - proxy:/server
+    
+networks:
+  mc:
+    name: mc
+    driver: bridge
+
+volumes:
+  proxy:
+    external: true
+  Tectonic:
+    external: true
+  Vanilla:
+    external: true
