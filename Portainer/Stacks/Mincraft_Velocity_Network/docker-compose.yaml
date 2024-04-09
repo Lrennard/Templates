@@ -15,6 +15,7 @@ services:
         fabricproxy-lite:Mxw3Cbsk
         fabric-api:htRy7kbI
         dynamic-lights:Y1UP7YoY
+        fallingtree:mb15RrXi
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Vanilla:/data
