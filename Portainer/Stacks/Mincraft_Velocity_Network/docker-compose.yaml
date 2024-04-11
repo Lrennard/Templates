@@ -134,8 +134,16 @@ services:
     image: itzg/bungeecord
     environment:
       TYPE: VELOCITY
+      MINECRAFT_VERSION: 1.20.4
+      MEMORY: 2G
       DEBUG: "false"
       ENABLE_RCON: "true"
+      PLUGINS: |
+        https://hangarcdn.papermc.io/plugins/ReModded/ReWhitelist/versions/1.0.0/VELOCITY/ReWhitelist-1.0.0.jar
+        https://download.luckperms.net/1534/velocity/LuckPerms-Velocity-5.4.121.jar
+      MODRINTH_PROJECTS: |
+        minimotd:z8DFFJMR
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
     networks:
       - mc
     ports:
