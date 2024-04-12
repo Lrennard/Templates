@@ -11,11 +11,15 @@ services:
       UID: ${VANILLA_UID}
       GID: ${VANILLA_GID}
       MEMORY: ${VANILLA_MEM}
+      PLUGINS: |
+        https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
       MODRINTH_PROJECTS: |
         fabricproxy-lite:Mxw3Cbsk
         fabric-api:htRy7kbI
         dynamic-lights:Y1UP7YoY
         fallingtree:mb15RrXi
+        inventory-sorting:MO3Q3zs2
+        jei:HPR5ThoH
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Vanilla:/data
@@ -43,6 +47,8 @@ services:
         journeymap:YzYzLujr
         fallingtree:mb15RrXi
         dynamic-lights:Y1UP7YoY
+        inventory-sorting:MO3Q3zs2
+        jei:HPR5ThoH
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Tectonic:/data
@@ -73,7 +79,12 @@ services:
         https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
       MODRINTH_PROJECTS: |
         fabricproxy-lite:Mxw3Cbsk
-        fabric-api:htRy7kbI
+        tectonic:H8adpDEF
+        journeymap:YzYzLujr
+        fallingtree:mb15RrXi
+        dynamic-lights:Y1UP7YoY
+        inventory-sorting:MO3Q3zs2
+        jei:HPR5ThoH
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Creative:/data
@@ -107,6 +118,9 @@ services:
         fabric-api:htRy7kbI
         fallingtree:mb15RrXi
         dynamic-lights:Y1UP7YoY
+        journeymap:YzYzLujr
+        inventory-sorting:MO3Q3zs2
+        jei:HPR5ThoH
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Mining:/data
