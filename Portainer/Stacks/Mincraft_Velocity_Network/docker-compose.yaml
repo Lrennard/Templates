@@ -13,6 +13,9 @@ services:
       MEMORY: ${VANILLA_MEM}
       PLUGINS: |
         https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
+        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
+        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
+        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
       MODRINTH_PROJECTS: |
         fabricproxy-lite:Mxw3Cbsk
         fabric-api:htRy7kbI
@@ -20,6 +23,8 @@ services:
         fallingtree:mb15RrXi
         inventory-sorting:MO3Q3zs2
         jei:HPR5ThoH
+        no-chat-reports:tfv6A4l5
+        cardboard:yNNUJI0X
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Vanilla:/data
@@ -40,6 +45,11 @@ services:
       MEMORY: ${TECT_MEM}
       VIEW_DISTANCE: ${TECT_VIEW}
       SIMULATION_DISTANCE: ${TECT_SIM}
+      PLUGINS: 
+        https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
+        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
+        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
+        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
       MODRINTH_PROJECTS: |
         fabric-api:htRy7kbI
         fabricproxy-lite:Mxw3Cbsk
@@ -49,6 +59,8 @@ services:
         dynamic-lights:Y1UP7YoY
         inventory-sorting:MO3Q3zs2
         jei:HPR5ThoH
+        no-chat-reports:tfv6A4l5
+        cardboard:yNNUJI0X
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Tectonic:/data
@@ -77,6 +89,9 @@ services:
       MEMORY: ${CREA_MEM}
       PLUGINS: |
         https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
+        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
+        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
+        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
       MODRINTH_PROJECTS: |
         fabricproxy-lite:Mxw3Cbsk
         tectonic:H8adpDEF
@@ -85,6 +100,8 @@ services:
         dynamic-lights:Y1UP7YoY
         inventory-sorting:MO3Q3zs2
         jei:HPR5ThoH
+        no-chat-reports:tfv6A4l5
+        cardboard:yNNUJI0X
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Creative:/data
@@ -113,6 +130,9 @@ services:
       MEMORY: ${MINE_MEM}
       PLUGINS: |
         https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
+        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
+        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
+        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
       MODRINTH_PROJECTS: |
         fabricproxy-lite:Mxw3Cbsk
         fabric-api:htRy7kbI
@@ -121,6 +141,8 @@ services:
         journeymap:YzYzLujr
         inventory-sorting:MO3Q3zs2
         jei:HPR5ThoH
+        no-chat-reports:tfv6A4l5
+        cardboard:yNNUJI0X
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Mining:/data
@@ -155,6 +177,7 @@ services:
       PLUGINS: |
         https://hangarcdn.papermc.io/plugins/ReModded/ReWhitelist/versions/1.0.0/VELOCITY/ReWhitelist-1.0.0.jar
         https://download.luckperms.net/1534/velocity/LuckPerms-Velocity-5.4.121.jar
+        https://github.com/SkinsRestorer/SkinsRestorerX/releases/download/15.0.2/SkinsRestorer.jar
       MODRINTH_PROJECTS: |
         minimotd:z8DFFJMR
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
