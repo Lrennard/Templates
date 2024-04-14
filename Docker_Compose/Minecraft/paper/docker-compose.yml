@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  Paper-test:
+    image: itzg/minecraft-server
+    environment:
+      UID: ${MINE_UID}
+      GID: ${MINE_UID}
+      TYPE: ${MINE_TYPE}
+      STOP_SERVER_ANNOUNCE_DELAY: 90
+      LEVEL_TYPE: "minecraft:amplified"
+      VIEW_DISTANCE: ${VIEW_DISTANCE}
+      SIMULATION_DISTANCE: ${MINE_SIM}
+      EULA: "TRUE"
+      VERSION: ${MINE_MEM}
+      TZ: ${TZ}
+      PVP: FALSE
+      ONLINE_MODE: FALSE
+      DIFFICULTY: EASY
+      MEMORY: ${MINE_MEM}
+      PLUGINS: |
+        https://download.luckperms.net/1534/bukkit/loader/LuckPerms-Bukkit-5.4.121.jar
+        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
+        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
+        https://www.spigotmc.org/resources/dynamic-lights.78766/download?version=354199
+      SPIGET_RESOURCES: |
+        78766
+        40313
+        102931
+      MODRINTH_PROJECTS: |
+        jei:HPR5ThoH
+      MODRINTH_DOWNLOAD_DEPENDENCIES: required
+    volumes:
+      - Mining:/data
+    networks:
+      - Oasis
+    ports: 
+      - 25567:25565
+    restart: unless-stopped
+    
+networks:
+  mc:
+    name: mc
+    driver: bridge
