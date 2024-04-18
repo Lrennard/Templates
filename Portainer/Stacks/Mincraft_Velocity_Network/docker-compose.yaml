@@ -129,20 +129,16 @@ services:
       DIFFICULTY: EASY
       MEMORY: ${MINE_MEM}
       PLUGINS: |
-        https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
+        https://download.luckperms.net/1534/bukkit/loader/LuckPerms-Bukkit-5.4.121.jar
         https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
         https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
-        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
+        https://www.spigotmc.org/resources/dynamic-lights.78766/download?version=354199
+      SPIGET_RESOURCES: |
+        78766
+        40313
+        102931
       MODRINTH_PROJECTS: |
-        fabricproxy-lite:Mxw3Cbsk
-        fabric-api:htRy7kbI
-        fallingtree:mb15RrXi
-        dynamic-lights:Y1UP7YoY
-        journeymap:YzYzLujr
-        inventory-sorting:MO3Q3zs2
-        jei:HPR5ThoH
-        no-chat-reports:tfv6A4l5
-        cardboard:yNNUJI0X
+        veinminer:11brGK6s
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     volumes:
       - Mining:/data
