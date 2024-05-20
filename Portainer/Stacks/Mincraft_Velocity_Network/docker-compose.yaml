@@ -1,73 +1,5 @@
 version: '3.8'
 services:
-  vanilla:
-    image: itzg/minecraft-server
-    environment:
-      TYPE: ${VANILLA_TYPE}
-      ONLINE_MODE: ${OM}
-      EULA: "TRUE"
-      VERSION: ${VANILLA_VERSION}
-      TZ: ${TZ}
-      UID: ${VANILLA_UID}
-      GID: ${VANILLA_GID}
-      MEMORY: ${VANILLA_MEM}
-      PLUGINS: |
-        https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
-        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
-        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
-        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
-      MODRINTH_PROJECTS: |
-        fabricproxy-lite:Mxw3Cbsk
-        fabric-api:htRy7kbI
-        dynamic-lights:Y1UP7YoY
-        fallingtree:mb15RrXi
-        inventory-sorting:MO3Q3zs2
-        jei:HPR5ThoH
-        no-chat-reports:tfv6A4l5
-        cardboard:yNNUJI0X
-      MODRINTH_DOWNLOAD_DEPENDENCIES: required
-    volumes:
-      - Vanilla:/data
-    networks:
-      - mc
-    restart: unless-stopped
-
-  tectonic:
-    image: itzg/minecraft-server
-    environment:
-      TYPE: ${TECT_TYPE}
-      ONLINE_MODE: ${OM}
-      EULA: "TRUE"
-      VERSION: ${TECT_VERSION}
-      TZ: ${TZ}
-      UID: ${TECT_UID}
-      GID: ${TECT_UID}
-      MEMORY: ${TECT_MEM}
-      VIEW_DISTANCE: ${TECT_VIEW}
-      SIMULATION_DISTANCE: ${TECT_SIM}
-      PLUGINS: 
-        https://download.luckperms.net/1534/fabric/LuckPerms-Fabric-5.4.121.jar
-        https://github.com/EssentialsX/Essentials/releases/tag/2.20.1
-        https://github.com/MilkBowl/Vault/releases/download/1.7.3/Vault.jar
-        https://cdn.modrinth.com/data/SVKv1SZo/versions/G36ffHrs/iCommon-Fabric-bundle.jar
-      MODRINTH_PROJECTS: |
-        fabric-api:htRy7kbI
-        fabricproxy-lite:Mxw3Cbsk
-        tectonic:H8adpDEF
-        journeymap:YzYzLujr
-        fallingtree:mb15RrXi
-        dynamic-lights:Y1UP7YoY
-        inventory-sorting:MO3Q3zs2
-        jei:HPR5ThoH
-        no-chat-reports:tfv6A4l5
-        cardboard:yNNUJI0X
-      MODRINTH_DOWNLOAD_DEPENDENCIES: required
-    volumes:
-      - Tectonic:/data
-    networks:
-      - mc
-    restart: unless-stopped
-
   Creative:
     image: itzg/minecraft-server
     environment:
@@ -160,13 +92,13 @@ services:
   router:
     image: ${MC_ROUTER_IMAGE:-itzg/mc-router}
     depends_on:
-      - vanilla
-      - tectonic
+      - proxy
     environment:
       TZ: "America/New_York"
       MAPPING: |
-        vanilla.example.com=oasis-vanilla-1:25565
-        tectonic.example.com=oasis-tectonic-1:25565
+        mc.l3lee.com=oasis-proxy-1:25577
+    ports:
+      - "25570:25565"
     networks:
       - mc
     restart: unless-stopped
@@ -176,15 +108,20 @@ services:
     environment:
       TYPE: VELOCITY
       MINECRAFT_VERSION: 1.20.4
-      MEMORY: 2G
+      MEMORY: 4G
       DEBUG: "false"
       ENABLE_RCON: "true"
       PLUGINS: |
         https://hangarcdn.papermc.io/plugins/ReModded/ReWhitelist/versions/1.0.0/VELOCITY/ReWhitelist-1.0.0.jar
-        https://download.luckperms.net/1534/velocity/LuckPerms-Velocity-5.4.121.jar
-        https://github.com/SkinsRestorer/SkinsRestorerX/releases/download/15.0.2/SkinsRestorer.jar
+        https://download.luckperms.net/1540/velocity/LuckPerms-Velocity-5.4.127.jar
+        https://github.com/SkinsRestorer/SkinsRestorer/releases/download/15.0.13/SkinsRestorer.jar
+        https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.10.1/PAPER/ViaBackwards-4.10.1.jar
+        https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.10.1/PAPER/ViaVersion-4.10.1.jar
+        https://github.com/TrueMB/DiscordNotify/releases/download/3.3.5/DiscordNotify-3.3.5.jar
       MODRINTH_PROJECTS: |
         minimotd:z8DFFJMR
+        mckotlin:rEHcRyPV
+        vlobby:p5lOYrvy
       MODRINTH_DOWNLOAD_DEPENDENCIES: required
     networks:
       - mc
