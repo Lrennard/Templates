@@ -113,10 +113,10 @@ services:
       ENABLE_RCON: "true"
       PLUGINS: |
         https://hangarcdn.papermc.io/plugins/ReModded/ReWhitelist/versions/1.0.0/VELOCITY/ReWhitelist-1.0.0.jar
-        https://download.luckperms.net/1540/velocity/LuckPerms-Velocity-5.4.127.jar
+        https://download.luckperms.net/1541/velocity/LuckPerms-Velocity-5.4.128.jar
         https://github.com/SkinsRestorer/SkinsRestorer/releases/download/15.0.13/SkinsRestorer.jar
-        https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.10.1/PAPER/ViaBackwards-4.10.1.jar
-        https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.10.1/PAPER/ViaVersion-4.10.1.jar
+        https://hangarcdn.papermc.io/plugins/ViaVersion/ViaVersion/versions/4.10.2/PAPER/ViaVersion-4.10.2.jar
+        https://hangarcdn.papermc.io/plugins/ViaVersion/ViaBackwards/versions/4.10.2/PAPER/ViaBackwards-4.10.2.jar
         https://github.com/TrueMB/DiscordNotify/releases/download/3.3.5/DiscordNotify-3.3.5.jar
       MODRINTH_PROJECTS: |
         minimotd:z8DFFJMR
